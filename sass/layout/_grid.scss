@@ -1,0 +1,36 @@
+.row {
+    max-width:$grid-width;
+    margin: 0 auto; 
+    
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+        @include respond(tab-port){
+          margin-bottom:$gutter-vertical-small;
+        }
+    }
+    @include respond(tab-port){
+      max-width:50rem;
+      padding:0 3rem;
+    }
+    @include clearfix;
+    [class^="col-"] {
+        float:left;
+        &:not(:last-child){
+            margin-right:$gutter-horizontal;
+            @include respond(tab-port){
+              margin-right:0;
+              margin-bottom:$gutter-vertical-small;
+            }
+        }
+        @include respond(tab-port){
+          width:100% !important;
+        }
+    }
+    @for $j from 1 through 6 {
+        @for $i from 1 through $j {
+          .col-#{$i}-of-#{$j} {
+            width: calc-2d($i, $j, $gutter-horizontal);
+          }
+        }
+      }
+    }
